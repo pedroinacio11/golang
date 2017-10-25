@@ -9,12 +9,22 @@ func main(){
 	// letra maiscula ...
 
 	nome := "Pedro Henrique"
-	idade := 25
 	versao := 1.1
 
-	fmt.Println("Olá, sr.", nome, "sua idade é", idade )
+	fmt.Println("Olá, sr.", nome)
 	fmt.Println("Este programa está na versão", versao)
-
 	//fmt.Println("O tipo da variavel versao é", reflect.TypeOf(versao))
+
+	fmt.Println("1 - Iniciar monitaramento")
+	fmt.Println("2 - Exibir logs")
+	fmt.Println("0 - Sair do programa")
+
+	var comando int
+
+	//%d = espera receber um modificador, vai salvar 
+	// na variavel comando o que for digitado
+	fmt.Scan(&comando)
+	fmt.Println("O comando escolhido foi", comando)
+
 }
 
