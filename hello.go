@@ -1,11 +1,13 @@
 package main
+
 //import do println
 import "fmt"
+
 //import "reflect"
 
 //função principal do meu programa
-func main(){
-	//Sei que veio de um pacote externo pois a função começa com 
+func main() {
+	//Sei que veio de um pacote externo pois a função começa com
 	// letra maiscula ...
 
 	nome := "Pedro Henrique"
@@ -21,10 +23,20 @@ func main(){
 
 	var comando int
 
-	//%d = espera receber um modificador, vai salvar 
+	//%d = espera receber um modificador, vai salvar
 	// na variavel comando o que for digitado
 	fmt.Scan(&comando)
 	fmt.Println("O comando escolhido foi", comando)
 
-}
+	switch comando {
+	case 1:
+		fmt.Println("Monitorando...")
+	case 2:
+		fmt.Println("Exibindo logs...")
+	case 0:
+		fmt.Println("Saindo do programa...")
+	default:
+		fmt.Println("Não conheço esse comando...")
+	}
 
+}
