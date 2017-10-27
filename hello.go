@@ -1,12 +1,40 @@
 package main
 
 //import do println
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 //import "reflect"
 
 //função principal do meu programa
 func main() {
+
+	exibeIntroducao()
+	exibeMenu()
+
+	comando := leComando()
+
+	switch comando {
+	case 1:
+		fmt.Println("Monitorando...")
+	case 2:
+		fmt.Println("Exibindo logs...")
+	case 0:
+		fmt.Println("Saindo do programa...")
+		//Saindo do programa com sucesso (Boa prática o retorno
+		//deve ser status zero - estou avisando para o meu SO que sai)
+		os.Exit(0)
+	default:
+		fmt.Println("Não conheço esse comando...")
+		// -1 indica que houve um problema no programa
+		os.Exit(-1)
+	}
+
+}
+
+func exibeIntroducao() {
 	//Sei que veio de um pacote externo pois a função começa com
 	// letra maiscula ...
 
@@ -16,27 +44,23 @@ func main() {
 	fmt.Println("Olá, sr.", nome)
 	fmt.Println("Este programa está na versão", versao)
 	//fmt.Println("O tipo da variavel versao é", reflect.TypeOf(versao))
+}
+
+func exibeMenu() {
 
 	fmt.Println("1 - Iniciar monitaramento")
 	fmt.Println("2 - Exibir logs")
 	fmt.Println("0 - Sair do programa")
+}
 
-	var comando int
+//função que retorna um int
+func leComando() int {
 
+	var comandoLido int
 	//%d = espera receber um modificador, vai salvar
 	// na variavel comando o que for digitado
-	fmt.Scan(&comando)
-	fmt.Println("O comando escolhido foi", comando)
+	fmt.Scan(&comandoLido)
+	fmt.Println("O comando escolhido foi", comandoLido)
 
-	switch comando {
-	case 1:
-		fmt.Println("Monitorando...")
-	case 2:
-		fmt.Println("Exibindo logs...")
-	case 0:
-		fmt.Println("Saindo do programa...")
-	default:
-		fmt.Println("Não conheço esse comando...")
-	}
-
+	return comandoLido
 }
