@@ -3,6 +3,7 @@ package main
 //import do println
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -12,26 +13,29 @@ import (
 func main() {
 
 	exibeIntroducao()
-	exibeMenu()
 
-	comando := leComando()
+	for {
 
-	switch comando {
-	case 1:
-		fmt.Println("Monitorando...")
-	case 2:
-		fmt.Println("Exibindo logs...")
-	case 0:
-		fmt.Println("Saindo do programa...")
-		//Saindo do programa com sucesso (Boa prática o retorno
-		//deve ser status zero - estou avisando para o meu SO que sai)
-		os.Exit(0)
-	default:
-		fmt.Println("Não conheço esse comando...")
-		// -1 indica que houve um problema no programa
-		os.Exit(-1)
+		exibeMenu()
+
+		comando := leComando()
+
+		switch comando {
+		case 1:
+			iniciarMonitoramento()
+		case 2:
+			fmt.Println("Exibindo logs...")
+		case 0:
+			fmt.Println("Saindo do programa...")
+			//Saindo do programa com sucesso (Boa prática o retorno
+			//deve ser status zero - estou avisando para o meu SO que sai)
+			os.Exit(0)
+		default:
+			fmt.Println("Não conheço esse comando...")
+			// -1 indica que houve um problema no programa
+			os.Exit(-1)
+		}
 	}
-
 }
 
 func exibeIntroducao() {
@@ -63,4 +67,22 @@ func leComando() int {
 	fmt.Println("O comando escolhido foi", comandoLido)
 
 	return comandoLido
+}
+
+func iniciarMonitoramento() {
+	fmt.Println("Iniciando Monitorando...")
+
+	site := "https://phinacio.com"
+	//resp, err := http.Get(site)
+	//_ serve para ignorar o retorno
+	resp, _ := http.Get(site)
+	//fmt.Println(resp)
+
+	if resp.StatusCode == 200 {
+		fmt.Println("O seu site", site, "foi carregado com sucesso!")
+	} else {
+		fmt.Println("O seu site", site, "está com algum problema",
+			resp.StatusCode)
+	}
+
 }
