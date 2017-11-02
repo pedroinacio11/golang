@@ -71,14 +71,16 @@ func leComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Iniciando Monitorando...")
-
-	var sites [4]string
-
-	sites[0] = "https://random-status-code.herokuapp.com/"
-	sites[1] = "https://phinacio.com.br"
-	sites[2] = "https://caelum.com.br"
+	sites := []string{"https://random-status-code.herokuapp.com/", "https://phinacio.com.br",
+		"https://caelum.com.br"}
 
 	fmt.Println(sites)
+
+	for i := 0; i < len(sites); i++ {
+
+		fmt.Println(sites[i])
+
+	}
 
 	//resp, err := http.Get(site)
 	//_ serve para ignorar o retorno
