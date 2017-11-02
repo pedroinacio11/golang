@@ -2,9 +2,12 @@ package main
 
 //import do println
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 )
 
 // Constantes Não podem ser alteradas
@@ -116,13 +119,37 @@ func leSitesDoArquivo() []string {
 	var sites []string
 
 	arquivo, err := os.Open("sites.txt")
+	//arquivo, err := ioutil.ReadFile("sites.txt")
 
 	if err != nil {
 		fmt.Println("Ocorreu um erro", err)
+	}
+
+	leitor := bufio.NewReader(arquivo)
+
+	for {
+
+		// Tô informando o byte limitador ... ele deve quebrar na linha
+		linha, err := leitor.ReadString('\n')
+		//TrimSpace = Quebra de espaço -- Não faz ele pular a linha
+		linha = strings.TrimSpace(linha)
+
+		sites = append(sites, linha)
+
+		//EOF é o erro que dá quando chega ao final do arquivo
+		if err == io.EOF {
+			break
+		}
 
 	}
 
-	fmt.Println(arquivo)
+	fmt.Println(sites)
+
+	//fmt.Println(string(arquivo))
+
+	//Fechando para ser usado por outro processo [boa pratica]
+	arquivo.Close()
+
 	return sites
 
 }
