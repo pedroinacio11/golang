@@ -1,0 +1,12 @@
+02/11/2017 21:08:24 - https://www.phinacio.com - online: true
+02/11/2017 21:08:25 - https://random-status-code.herokuapp.com - online: true
+02/11/2017 21:08:25 - https://www.caelum.com.br - online: true
+02/11/2017 21:08:25 - http://globoesporte.globo.com/ - online: true
+02/11/2017 21:08:27 - https://www.phinacio.com - online: true
+02/11/2017 21:08:28 - https://random-status-code.herokuapp.com - online: true
+02/11/2017 21:08:28 - https://www.caelum.com.br - online: true
+02/11/2017 21:08:29 - http://globoesporte.globo.com/ - online: true
+02/11/2017 21:08:30 - https://www.phinacio.com - online: true
+02/11/2017 21:08:31 - https://random-status-code.herokuapp.com - online: true
+02/11/2017 21:08:31 - https://www.caelum.com.br - online: true
+02/11/2017 21:08:31 - http://globoesporte.globo.com/ - online: true
