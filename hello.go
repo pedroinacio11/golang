@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+// Constantes Não podem ser alteradas
+
 const monitoramentos = 3
 const delay = 5
 
@@ -16,6 +18,7 @@ const delay = 5
 func main() {
 
 	exibeIntroducao()
+	leSitesDoArquivo()
 
 	for {
 
@@ -75,11 +78,11 @@ func leComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Iniciando Monitorando...")
-	sites := []string{"https://random-status-code.herokuapp.com/",
-		"https://www.alura.com.br", "https://www.caelum.com.br"}
+	//sites := []string{"https://random-status-code.herokuapp.com/", "https://www.alura.com.br", "https://www.caelum.com.br"}
+
+	sites := leSitesDoArquivo()
 
 	// o range obtem a posiçaõ e quem está na posição...
-
 	for i := 0; i < monitoramentos; i++ {
 		for i, site := range sites {
 			fmt.Println("Testando site", i, ":", site)
@@ -94,12 +97,32 @@ func testaSite(site string) {
 	//resp, err := http.Get(site)
 	//_ serve para ignorar o retorno
 
-	resp, _ := http.Get(site)
+	resp, err := http.Get(site)
 	//fmt.Println(resp)
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro", err)
+	}
 
 	if resp.StatusCode == 200 {
 		fmt.Println("O seu site", site, "foi carregado com sucesso!")
 	} else {
 		fmt.Println("O seu site", site, "está com algum problema", resp.StatusCode)
 	}
+}
+
+func leSitesDoArquivo() []string {
+
+	var sites []string
+
+	arquivo, err := os.Open("sites.txt")
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro", err)
+
+	}
+
+	fmt.Println(arquivo)
+	return sites
+
 }
