@@ -7,6 +7,9 @@ import (
 	"os"
 )
 
+const monitoramentos = 3
+const delay = 5
+
 //import "reflect"
 
 //função principal do meu programa
@@ -65,35 +68,38 @@ func leComando() int {
 	// na variavel comando o que for digitado
 	fmt.Scan(&comandoLido)
 	fmt.Println("O comando escolhido foi", comandoLido)
+	fmt.Println("")
 
 	return comandoLido
 }
 
 func iniciarMonitoramento() {
 	fmt.Println("Iniciando Monitorando...")
-	sites := []string{"https://random-status-code.herokuapp.com/", "https://phinacio.com.br",
-		"https://caelum.com.br"}
-
-	fmt.Println(sites)
+	sites := []string{"https://random-status-code.herokuapp.com/",
+		"https://www.alura.com.br", "https://www.caelum.com.br"}
 
 	// o range obtem a posiçaõ e quem está na posição...
-	for i, site := range sites {
 
-		fmt.Println("Estou passando na posição", i, "do meu slice e essa posição tem o site:", site)
-
+	for i := 0; i < monitoramentos; i++ {
+		for i, site := range sites {
+			fmt.Println("Testando site", i, ":", site)
+			testaSite(site)
+		}
 	}
 
+	fmt.Println("")
+}
+
+func testaSite(site string) {
 	//resp, err := http.Get(site)
 	//_ serve para ignorar o retorno
-	site := "https://random-status-code.herokuapp.com/"
+
 	resp, _ := http.Get(site)
 	//fmt.Println(resp)
 
 	if resp.StatusCode == 200 {
 		fmt.Println("O seu site", site, "foi carregado com sucesso!")
 	} else {
-		fmt.Println("O seu site", site, "está com algum problema",
-			resp.StatusCode)
+		fmt.Println("O seu site", site, "está com algum problema", resp.StatusCode)
 	}
-
 }
