@@ -76,9 +76,10 @@ func iniciarMonitoramento() {
 
 	fmt.Println(sites)
 
-	for i := 0; i < len(sites); i++ {
+	// o range obtem a posiçaõ e quem está na posição...
+	for i, site := range sites {
 
-		fmt.Println(sites[i])
+		fmt.Println("Estou passando na posição", i, "do meu slice e essa posição tem o site:", site)
 
 	}
 
